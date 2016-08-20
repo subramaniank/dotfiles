@@ -26,21 +26,3 @@
 
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; autopep8 configuration. Credits : @scriptdevil
-(setq autopep8-comand "/usr/local/bin/autopep8")
-
-    (defun my-pep8 ()
-      (interactive)
-
-      ;; run autopep8 on file
-      (shell-command (concat autopep8-path " -i " f) nil t)
-      ;; load back the changes
-      (revert-buffer t t))
-
-    (if (file-exists-p autopep8-path)
-        (add-hook 'after-save-hook
-              (lambda ()
-            (let ((f (buffer-file-name)))
-              (if (string-suffix-p ".py" f)
-                  (my-pep8))))))
